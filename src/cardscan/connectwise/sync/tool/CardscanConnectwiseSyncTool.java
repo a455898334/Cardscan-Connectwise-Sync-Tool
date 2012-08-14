@@ -5,15 +5,17 @@
 package cardscan.connectwise.sync.tool;
 
 import javax.swing.*;
+import javax.xml.parsers.ParserConfigurationException;
 
 /**
  *
  * @author Peter
  */
 public class CardscanConnectwiseSyncTool {
-    CWContactModifier Fabian  = new CWContactModifier();
-    public static void main(String[] args) {
-       JFrame f = new GUIintro();
-       
+    public static void main(String[] args) throws ParserConfigurationException, Exception {
+     //  JFrame f = new GUIintro();
+            CWContactModifier Fabian  = new CWContactModifier();
+
+       System.out.println(Fabian.getZip("Peter","JU"));
     }
 }

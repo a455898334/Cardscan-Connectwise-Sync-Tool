@@ -99,9 +99,6 @@ public class Contact {
     public String getStreetline(){
        return streetline;
     }
-    public String getStreetLine(){
-        return streetline;
-    }
     public String getCity(){
        return city;
     }

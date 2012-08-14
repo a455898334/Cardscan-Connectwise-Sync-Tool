@@ -38,8 +38,8 @@ public class CWContactModifier {
             "site", "brainlink.myconnectwise.net",
             "app_root", "v4_6_release",
             "company", "Brainlink",
-            "username", "", //Insert Username
-            "password", "");   //Insert Password
+            "username", "rgoel", //Insert Username
+            "password", "raj");   //Insert Password
 
 
     public void createContact( String type, String gender,
@@ -145,6 +145,10 @@ public class CWContactModifier {
     }
     public String getAddressLine(String firstName, String lastName) throws ParserConfigurationException, Exception {
         String line = parseDocument(firstName, lastName, "AddressLine1");
+        xmlcode = "";
+        return line;}
+    public String getZip(String firstName, String lastName) throws ParserConfigurationException, Exception {
+        String line = parseDocument(firstName, lastName, "Zip");
         xmlcode = "";
         return line;}
     public String getCity(String firstName, String lastName) throws ParserConfigurationException, Exception {
@@ -264,6 +268,12 @@ public class CWContactModifier {
     
     public boolean companyExists(String cname) throws ParserConfigurationException, Exception{
     if (parseDocument3(cname,"CompanyRecID") == "")
+    return false;
+    else
+    return true; }
+   
+    public boolean contactExists(String firstname,String lastname) throws ParserConfigurationException, Exception{
+    if (parseDocument(firstname,lastname,"Contacts") == "")
     return false;
     else
     return true; }
