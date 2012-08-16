@@ -33,7 +33,7 @@ public class LoadCardscanContacts {
         String firstname;
         String lastname;
         try {
-            File fXmlFile = new File("c:\\file.xml");
+            File fXmlFile = new File(csPath);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(fXmlFile);
@@ -46,20 +46,22 @@ public class LoadCardscanContacts {
                 Node nNode = nList.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
-                     firstname = getTagValue("First Name", eElement);
-                     lastname = getTagValue("Last Name", eElement);
+                     firstname = getTagValue("First_Name", eElement);
+                     lastname = getTagValue("Last_Name", eElement);
                      contacts.add(new Contact(firstname,lastname));
                      contacts.get(temp).setCity(getTagValue("City", eElement));
-                     contacts.get(temp).setCompany(getTagValue("Company Name", eElement));
+                     contacts.get(temp).setCompany(getTagValue("Company_Name", eElement));
                      contacts.get(temp).setCountry(getTagValue("Country", eElement));
                      contacts.get(temp).setEmail(getTagValue("Email", eElement));
                      contacts.get(temp).setFax(getTagValue("Fax", eElement));
                      contacts.get(temp).setNotes(getTagValue("Notes", eElement));
                      contacts.get(temp).setPhone(getTagValue("Phone", eElement));
                      contacts.get(temp).setState(getTagValue("State", eElement));
-                     contacts.get(temp).setStreetLine(getTagValue("Address Line 1", eElement));
+                     contacts.get(temp).setStreetLine(getTagValue("Address_Line_1", eElement));
                      contacts.get(temp).setTitle(getTagValue("Title", eElement));
-                     contacts.get(temp).setZip(getTagValue("Zip",eElement));
+                     contacts.get(temp).setZip(getTagValue("Zip_code",eElement));
+                     contacts.get(temp).setSyncDate(getTagValue("Creation_Date",eElement));
+                     
                 }
             }
             
@@ -72,11 +74,16 @@ public class LoadCardscanContacts {
     }
     
     private static String getTagValue(String sTag, Element eElement) {
-	NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
- 
-        Node nValue = (Node) nlList.item(0);
+	try{
+            NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
+         Node nValue = (Node) nlList.item(0);
  
 	return nValue.getNodeValue();
+        }
+ catch(Exception e){
+     return "??";
+ }
+       
   }
     
     public ArrayList getContacts(){

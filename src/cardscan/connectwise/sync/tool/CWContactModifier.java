@@ -41,8 +41,7 @@ public class CWContactModifier {
             "username", "rgoel", //Insert Username
             "password", "raj");   //Insert Password
 
-
-    public void createContact( String type, String gender,
+    public void createContact(
             String firstName, String lastName, String title, String email,
             String phone, String fax, String streetLine, String city, String state,
             String zip, String personalAddress, String company) throws ParserConfigurationException, Exception {
@@ -56,14 +55,14 @@ public class CWContactModifier {
         UTIL.createElement(contact, "Id", "0");
         UTIL.createElement(contact, "CompanyId", company);
        // UTIL.createElement(contact, "Relationship", relationship);
-        UTIL.createElement(contact, "Type", type);
+       // UTIL.createElement(contact, "Type", type);
         UTIL.createElement(contact, "Title", title);
         UTIL.createElement(contact, "Phone", phone);
         UTIL.createElement(contact, "Fax", fax);
         UTIL.createElement(contact, "Email", email);
         UTIL.createElement(contact, "FirstName", firstName);
         UTIL.createElement(contact, "LastName", lastName);
-        UTIL.createElement(contact, "Gender", gender);
+        UTIL.createElement(contact, "Gender", "Male");
         UTIL.createElement(contact, "City", city);
         UTIL.createElement(contact, "State", state);
         UTIL.createElement(contact, "Zip", zip);
@@ -151,6 +150,14 @@ public class CWContactModifier {
         String line = parseDocument(firstName, lastName, "Zip");
         xmlcode = "";
         return line;}
+    public String getFax(String firstName, String lastName) throws ParserConfigurationException, Exception {
+        String fax = parseDocument(firstName, lastName, "Fax");
+        xmlcode = "";
+        return fax;}
+    public String getTitle(String firstName, String lastName) throws ParserConfigurationException, Exception {
+        String fax = parseDocument(firstName, lastName, "Title");
+        xmlcode = "";
+        return fax;}
     public String getCity(String firstName, String lastName) throws ParserConfigurationException, Exception {
  String city =  parseDocument(firstName,lastName,"City");
  xmlcode = "";
@@ -165,6 +172,7 @@ public class CWContactModifier {
   xmlcode = "";
   return country;
     }
+    
     public String getID(String firstName, String lastName) throws ParserConfigurationException, Exception {
         String id =  parseDocument(firstName, lastName, "Id");
         xmlcode = "";
@@ -182,6 +190,11 @@ public class CWContactModifier {
     }
     public void setField(String firstName, String lastName, String field,String newContent) throws ParserConfigurationException, Exception {
         Element request, result, contact;
+        if(field.equals("Company")){
+           if (companyExists(newContent) != true){
+               createCompany(newContent);
+           }
+        }
         String id = getID(firstName, lastName);
         String companyid = getCompanyID(firstName,lastName);
         String gender = getGender(firstName,lastName);

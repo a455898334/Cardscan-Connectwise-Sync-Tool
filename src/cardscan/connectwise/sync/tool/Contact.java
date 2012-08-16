@@ -23,12 +23,25 @@ public class Contact {
     String zip = "";
     String type = "";
     String notes = "";
+    String syncdate = "";
+    Boolean Sync = true;
     
     public Contact(String firstname,String lastname){
         fname = firstname;
         lname = lastname;
     }
     
+    public void setSync(Boolean syncs){
+        Sync = syncs;
+    }
+    
+    public boolean getSyncStatus(){
+        return Sync;
+    }
+    
+    public void setSyncDate(String date){
+        syncdate = date;
+    }
     public void setFname(String name){
         fname = name;
     }

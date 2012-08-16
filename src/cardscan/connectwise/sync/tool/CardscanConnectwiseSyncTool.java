@@ -13,9 +13,9 @@ import javax.xml.parsers.ParserConfigurationException;
  */
 public class CardscanConnectwiseSyncTool {
     public static void main(String[] args) throws ParserConfigurationException, Exception {
-     //  JFrame f = new GUIintro();
-            CWContactModifier Fabian  = new CWContactModifier();
+       JFrame f = new GUIintro();
+          //  CWContactModifier Fabian  = new CWContactModifier();
 
-       System.out.println(Fabian.getZip("Peter","JU"));
+   //    System.out.println(Fabian.getZip("Peter","JU"));
     }
 }
